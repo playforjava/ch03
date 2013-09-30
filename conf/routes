@@ -9,7 +9,7 @@ GET         /products/                   controllers.Products.list()
 GET         /products/new                controllers.Products.newProduct()
 GET         /products/:ean               controllers.Products.details(ean: String)
 POST        /products/                   controllers.Products.save()
-POST        /products/:ean/delete        controllers.Products.delete(ean: String)
+DELETE      /products/:ean               controllers.Products.delete(ean: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                controllers.Assets.at(path="/public", file)

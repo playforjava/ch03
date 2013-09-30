@@ -1,28 +1,51 @@
 @(products: Set[Product])
-
-@import helper._
 @main("Products catalogue") {
 
-  <h1>All products</h1>
+  <h2>All products</h2>
 
-  <dl>
-  @for(product <- products) {
-    <dt>
-
-      <a href="@routes.Products.details(product.ean)">
-        <i class="icon icon-pencil"></i>
-        @product.ean - @product.name
-      </a>
-    </dt>
-    <dd>@product.description
-      @form(action = routes.Products.delete(product.ean)){
-        <button type="submit" class="btn btn-danger btn-mini">
-          <i class="icon icon-white icon-trash"></i> Delete</button>
+    <script>
+     function del(urlToDelete) {
+        $.ajax({
+          url: urlToDelete,
+          type: 'DELETE',
+          success: function(results) {
+            // Refresh the page
+            location.reload();
+          }
+        });
       }
-    </dd>
-  }
-  </dl>
+   </script>
 
+   <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>EAN</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    @for(product <- products) {
+
+      <tr>
+        <td><a href="@routes.Products.details(product.ean)">
+          @product.ean 
+        </a></td>
+        <td><a href="@routes.Products.details(product.ean)">@product.name</a></td>
+        <td><a href="@routes.Products.details(product.ean)">@product.name</a></td>
+        <td>
+          <a href="@routes.Products.details(product.ean)"><i class="icon icon-pencil"></i></a> 
+          <a onclick="javascript:del('@routes.Products.details(product.ean)')"><i class="icon icon-trash"></i></a> 
+        </td>
+      </tr>
+      }
+  
+    </tbody>
+   </table>
+
+  
+    
   <a href="@routes.Products.newProduct()" class="btn">
     <i class="icon-plus"></i> New product</a>
 }
