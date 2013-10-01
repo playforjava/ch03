@@ -6,14 +6,14 @@ import play.mvc.Result;
 import play.mvc.Controller;
 import views.html.products.*;
 
-import java.util.Set;
+import java.util.List;
 
 public class Products extends Controller {
 
   private static final Form<Product> productForm = Form.form(Product.class);
 
   public static Result list() {
-    Set<Product> products = Product.findAll();
+    List<Product> products = Product.findAll();
     return ok(list.render(products));
   }
 
