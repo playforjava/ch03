@@ -11,6 +11,7 @@
       @helper.inputText(productForm("name"))
       @helper.textarea(productForm("description"))
     </fieldset>
-    <input type="submit" class="btn btn-primary">
+      <input type="submit" class="btn btn-primary" value="Save">
+    <a class="btn" href="@routes.Products.index()">Cancel</a>
   }
 }
